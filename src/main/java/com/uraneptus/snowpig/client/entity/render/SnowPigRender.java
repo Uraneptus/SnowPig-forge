@@ -25,17 +25,4 @@ public class SnowPigRender extends MobRenderer<SnowPigEntity, PigModel<SnowPigEn
     }
 
 
-  /* public SnowPigRender(EntityRendererManager rendererManager) {
-        super(rendererManager, new PigModel<>(), 0.5f);
-    }
-
-    @Override
-    public ResourceLocation getEntityTexture(SnowPigEntity entity) {
-        return this.getSnowPigTexture();
-    }
-
-    private ResourceLocation getSnowPigTexture() {
-        return new ResourceLocation(SnowPig.MOD_ID, "textures/entity/snow_pig.png");
-    } */
-
 }
