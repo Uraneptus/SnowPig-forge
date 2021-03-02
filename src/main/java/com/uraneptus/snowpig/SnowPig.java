@@ -5,6 +5,8 @@ import com.uraneptus.snowpig.common.entities.SnowPigEntity;
 import com.uraneptus.snowpig.common.items.SnowPigEgg;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
+import com.uraneptus.snowpig.core.world.gen.SnowPigSpawn;
+import com.uraneptus.snowpig.core.world.gen.SnowPigSpawnPlacement;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +39,9 @@ public class SnowPig
 
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        SnowPigSpawnPlacement.registerMod(event_bus);
+        SnowPigSpawn.registerForge(MinecraftForge.EVENT_BUS);
     }
 
     @SubscribeEvent
