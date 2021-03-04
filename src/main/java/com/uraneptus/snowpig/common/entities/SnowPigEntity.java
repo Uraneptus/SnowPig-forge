@@ -30,7 +30,9 @@ public class SnowPigEntity extends PigEntity {
     public static AttributeModifierMap.MutableAttribute func_234215_eI_() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D);
+                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
+                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.3D)
+                .createMutableAttribute(Attributes.ARMOR, 0.5D);
     }
 
     public void func_241841_a(ServerWorld p_241841_1_, LightningBoltEntity p_241841_2_) {
