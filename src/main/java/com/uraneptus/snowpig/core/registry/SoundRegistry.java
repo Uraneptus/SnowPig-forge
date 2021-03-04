@@ -1,0 +1,22 @@
+package com.uraneptus.snowpig.core.registry;
+
+import com.uraneptus.snowpig.SnowPig;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+public class SoundRegistry {
+
+    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SnowPig.MOD_ID);
+
+    public static final RegistryObject<SoundEvent> SNOW_PIG_AMBIENT = SOUNDS.register("entity.snow_pig.ambient",() ->
+            new SoundEvent(new ResourceLocation(SnowPig.MOD_ID, "entity.snow_pig.ambient")));
+
+    public static final RegistryObject<SoundEvent> SNOW_PIG_DEATH = SOUNDS.register("entity.snow_pig.death", () ->
+            new SoundEvent(new ResourceLocation(SnowPig.MOD_ID,"entity.snow_pig.death")));
+
+    public static final RegistryObject<SoundEvent> SNOW_PIG_STEP = SOUNDS.register("entity.snow_pig.step", () ->
+            new SoundEvent(new ResourceLocation(SnowPig.MOD_ID, "entity.snow_pig.step")));
+}

@@ -5,6 +5,7 @@ import com.uraneptus.snowpig.common.entities.SnowPigEntity;
 import com.uraneptus.snowpig.common.items.SnowPigEgg;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
+import com.uraneptus.snowpig.core.registry.SoundRegistry;
 import com.uraneptus.snowpig.core.world.gen.SnowPigSpawn;
 import com.uraneptus.snowpig.core.world.gen.SnowPigSpawnPlacement;
 import net.minecraft.entity.EntityType;
@@ -34,6 +35,7 @@ public class SnowPig
         event_bus.addListener(this::setup);
         event_bus.addListener(this::setupClient);
 
+        SoundRegistry.SOUNDS.register(event_bus);
         ItemRegistry.ITEMS.register(event_bus);
         EntityTypeRegistry.ENTITY_TYPES.register(event_bus);
 
