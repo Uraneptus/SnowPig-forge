@@ -54,7 +54,7 @@ public class SnowPigEntity extends PigEntity {
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundRegistry.SNOW_PIG_AMBIENT.get();
+        return SoundRegistry.SNOW_PIG_HURT.get();
     }
 
     @Override

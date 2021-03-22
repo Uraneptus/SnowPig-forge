@@ -14,6 +14,9 @@ public class SoundRegistry {
     public static final RegistryObject<SoundEvent> SNOW_PIG_AMBIENT = SOUNDS.register("entity.snow_pig.ambient",() ->
             new SoundEvent(new ResourceLocation(SnowPig.MOD_ID, "entity.snow_pig.ambient")));
 
+    public static final RegistryObject<SoundEvent> SNOW_PIG_HURT = SOUNDS.register("entity.snow_pig.hurt",() ->
+            new SoundEvent(new ResourceLocation(SnowPig.MOD_ID, "entity.snow_pig.hurt")));
+
     public static final RegistryObject<SoundEvent> SNOW_PIG_DEATH = SOUNDS.register("entity.snow_pig.death", () ->
             new SoundEvent(new ResourceLocation(SnowPig.MOD_ID,"entity.snow_pig.death")));
 
