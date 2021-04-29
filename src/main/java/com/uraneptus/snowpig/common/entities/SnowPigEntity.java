@@ -25,20 +25,20 @@ public class SnowPigEntity extends PigEntity {
         super(snowpig, worldIn);
     }
 
-    public static AttributeModifierMap.MutableAttribute func_234215_eI_() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.3D)
-                .createMutableAttribute(Attributes.ARMOR, 0.5D);
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MOVEMENT_SPEED, 0.15D)
+                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.3D)
+                .add(Attributes.ARMOR, 0.5D);
     }
 
-    public void func_241841_a(ServerWorld p_241841_1_, LightningBoltEntity p_241841_2_) {
+    public void thunderHit(ServerWorld p_241841_1_, LightningBoltEntity p_241841_2_) {
         return;
     }
 
     public static boolean canSpawn(EntityType<SnowPigEntity> entityType, IServerWorld world, SpawnReason reason, BlockPos pos, Random random) {
-        return world.getLightSubtracted(pos, 0) > 8;
+        return world.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
@@ -68,12 +68,12 @@ public class SnowPigEntity extends PigEntity {
     }
 
     @Override
-    public PigEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public PigEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityTypeRegistry.SNOW_PIG.get().create(p_241840_1_);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

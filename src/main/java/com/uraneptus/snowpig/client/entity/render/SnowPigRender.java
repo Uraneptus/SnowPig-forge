@@ -20,7 +20,7 @@ public class SnowPigRender extends MobRenderer<SnowPigEntity, PigModel<SnowPigEn
     }
 
     @Override
-    public ResourceLocation getEntityTexture(SnowPigEntity entity){
+    public ResourceLocation getTextureLocation(SnowPigEntity entity){
          return TEXTURE;
     }
 

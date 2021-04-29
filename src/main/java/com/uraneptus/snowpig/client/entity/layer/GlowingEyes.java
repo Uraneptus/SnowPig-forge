@@ -21,7 +21,7 @@ public class GlowingEyes extends LayerRenderer<SnowPigEntity, PigModel<SnowPigEn
 
     @Override
     public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, SnowPigEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        IVertexBuilder iVertexBuilder = bufferIn.getBuffer(RenderType.getEyes(TEXTURE));
-        this.getEntityModel().render(matrixStackIn, iVertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
+        IVertexBuilder iVertexBuilder = bufferIn.getBuffer(RenderType.eyes(TEXTURE));
+        this.getParentModel().renderToBuffer(matrixStackIn, iVertexBuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
     }
 }

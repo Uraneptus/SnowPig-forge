@@ -54,7 +54,7 @@ public class SnowPig
     private void setup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() ->{
-            GlobalEntityTypeAttributes.put(EntityTypeRegistry.SNOW_PIG.get(), SnowPigEntity.func_234215_eI_().create());
+            GlobalEntityTypeAttributes.put(EntityTypeRegistry.SNOW_PIG.get(), SnowPigEntity.createAttributes().build());
         });
 
     }

@@ -13,7 +13,7 @@ public class SnowPigSpawn {
 
     private static void biomeLoadingAddition(BiomeLoadingEvent event) {
         if (event.getCategory() == Biome.Category.ICY) {
-            event.getSpawns().withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityTypeRegistry.SNOW_PIG.get(), 20, 1, 4));
+            event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityTypeRegistry.SNOW_PIG.get(), 20, 1, 4));
         }
     }
 
