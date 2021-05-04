@@ -7,10 +7,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import vectorwing.farmersdelight.FarmersDelight;
 
 @Mod.EventBusSubscriber(modid = SnowPig.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegistry {
@@ -22,4 +24,13 @@ public class ItemRegistry {
 
     public static final RegistryObject<SnowPigEgg> SNOW_PIG_EGG = ITEMS.register("snow_pig_spawn_egg", () -> new SnowPigEgg(EntityTypeRegistry.SNOW_PIG, 0x70CFF3, 0xE2FBFA,
             new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+    public static final RegistryObject<Item> FROZEN_HAM = ITEMS.register("frozen_ham", () -> new Item(new Item.Properties()
+            .tab(ModList.get().isLoaded("farmersdelight") ? FarmersDelight.ITEM_GROUP : ItemGroup.TAB_FOOD)));
+
+
 }
+
+
+
+            //.tab(ModList.get().isLoaded("farmersdelight") ? FarmersDelight.ITEM_GROUP : ItemGroup.TAB_FOOD)));
