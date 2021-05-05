@@ -25,6 +25,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.console.level', 'debug'
 
             mods {
