@@ -41,6 +41,7 @@ public class SnowPigEntity extends PigEntity {
         return world.getRawBrightness(pos, 0) > 8;
     }
 
+
     @Override
     protected float getSoundVolume ()
     {
