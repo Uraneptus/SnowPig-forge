@@ -27,3 +27,10 @@ description='''
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.examplemod]]
+    modId="farmersdelight"
+    mandatory=false
+    versionRange="[0.4.5,)"
+    ordering="AFTER"
+    side="BOTH"

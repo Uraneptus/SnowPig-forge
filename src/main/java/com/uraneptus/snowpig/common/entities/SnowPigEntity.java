@@ -1,5 +1,6 @@
 package com.uraneptus.snowpig.common.entities;
 
+import com.uraneptus.snowpig.SnowPig;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.SoundRegistry;
 import net.minecraft.block.BlockState;
@@ -10,11 +11,13 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Random;
@@ -34,13 +37,26 @@ public class SnowPigEntity extends PigEntity {
     }
 
     public void thunderHit(ServerWorld p_241841_1_, LightningBoltEntity p_241841_2_) {
-        return;
+
     }
 
     public static boolean canSpawn(EntityType<SnowPigEntity> entityType, IServerWorld world, SpawnReason reason, BlockPos pos, Random random) {
         return world.getRawBrightness(pos, 0) > 8;
     }
 
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
+    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot.json");
+
+    public ResourceLocation getDefaultLootTable() {
+        if(ModList.get().isLoaded("farmersdelight")) {
+            return FROZEN_HAM_LOOT;
+        } else {
+            return this.getType().getDefaultLootTable();
+        }
+    }
 
     @Override
     protected float getSoundVolume ()

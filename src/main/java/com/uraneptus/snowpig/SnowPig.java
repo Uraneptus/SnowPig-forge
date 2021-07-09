@@ -28,7 +28,7 @@ public class SnowPig
 {
 
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final String MOD_ID= "snowpig";
+    public static final String MOD_ID = "snowpig";
 
     public SnowPig() {
         IEventBus event_bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -38,7 +38,6 @@ public class SnowPig
         SoundRegistry.SOUNDS.register(event_bus);
         ItemRegistry.ITEMS.register(event_bus);
         EntityTypeRegistry.ENTITY_TYPES.register(event_bus);
-
 
         MinecraftForge.EVENT_BUS.register(this);
 
