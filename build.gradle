@@ -12,9 +12,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0'
+version = "${mc_version}-${mod_version}"
 group = 'com.uraneptus.snowpig'
-archivesBaseName = 'snowpig'
+archivesBaseName = 'Snow_Pig'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -69,9 +69,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.0.0'
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    implementation fg.deobf("curse.maven:farmersdelight-398521:3357442")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
 
 }
 
