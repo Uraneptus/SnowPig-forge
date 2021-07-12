@@ -5,7 +5,7 @@ license="MIT License"
 
 [[mods]] #mandatory
 modId="snowpig" #mandatory
-version="2.3.0" #mandatory
+version="${file.jarVersion}" #mandatory
 displayName="Snow Pig" #mandatory
 displayURL="https://www.curseforge.com/members/uraneptus/projects" #optional
 logoFile="logo.png" #optional
