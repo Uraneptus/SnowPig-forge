@@ -8,29 +8,32 @@ modId="snowpig" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Snow Pig" #mandatory
 displayURL="https://www.curseforge.com/members/uraneptus/projects" #optional
-logoFile="logo.png" #optional
+logoFile="snowpig-banner.png" #optional
 credits="Sounds by Luz#8017" #optional
 authors="Uraneptus" #optional
 description='''
 '''
 
-[[dependencies.examplemod]] #optional
+[[dependencies.snowpig]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[37,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.snowpig]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.17.1,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.snowpig]]
     modId="farmersdelight"
     mandatory=false
     versionRange="[0.4.5,)"
     ordering="AFTER"
     side="BOTH"
+
+[modproperties.snowpig]
+    catalogueImageIcon= "snowpig-icon.png"
