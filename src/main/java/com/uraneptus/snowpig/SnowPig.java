@@ -8,13 +8,15 @@ import com.uraneptus.snowpig.core.registry.ItemRegistry;
 import com.uraneptus.snowpig.core.registry.SoundRegistry;
 import com.uraneptus.snowpig.core.world.gen.SnowPigSpawn;
 import com.uraneptus.snowpig.core.world.gen.SnowPigSpawnPlacement;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,7 +34,7 @@ public class SnowPig
 
     public SnowPig() {
         IEventBus event_bus = FMLJavaModLoadingContext.get().getModEventBus();
-        event_bus.addListener(this::setup);
+        //event_bus.addListener(this::setup);
         event_bus.addListener(this::setupClient);
 
         SoundRegistry.SOUNDS.register(event_bus);
@@ -47,19 +49,16 @@ public class SnowPig
 
     @SubscribeEvent
     public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        SnowPigEgg.regSpawnEggs();
-    }
-
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        event.enqueueWork(() ->{
-            GlobalEntityTypeAttributes.put(EntityTypeRegistry.SNOW_PIG.get(), SnowPigEntity.createAttributes().build());
-        });
 
     }
 
-    public void setupClient(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(EntityTypeRegistry.SNOW_PIG.get(), SnowPigRender::new);
+    @SubscribeEvent
+    public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
+        event.put(EntityTypeRegistry.SNOW_PIG.get(), SnowPigEntity.createAttributes().build());
+    }
+
+    public void setupClient(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityTypeRegistry.SNOW_PIG.get(), SnowPigRender::new);
     }
 
 }
