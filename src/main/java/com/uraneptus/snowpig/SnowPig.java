@@ -2,15 +2,10 @@ package com.uraneptus.snowpig;
 
 import com.uraneptus.snowpig.client.entity.render.SnowPigRender;
 import com.uraneptus.snowpig.common.entities.SnowPigEntity;
-import com.uraneptus.snowpig.common.items.SnowPigEgg;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
 import com.uraneptus.snowpig.core.registry.SoundRegistry;
-import com.uraneptus.snowpig.core.world.gen.SnowPigSpawn;
-import com.uraneptus.snowpig.core.world.gen.SnowPigSpawnPlacement;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,8 +13,6 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,8 +36,6 @@ public class SnowPig
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        SnowPigSpawnPlacement.registerMod(event_bus);
-        SnowPigSpawn.registerForge(MinecraftForge.EVENT_BUS);
     }
 
     @SubscribeEvent

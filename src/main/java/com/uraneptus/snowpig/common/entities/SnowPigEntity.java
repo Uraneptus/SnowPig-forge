@@ -78,10 +78,6 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
                 .add(Attributes.ARMOR, 0.5D);
     }
 
-    public static boolean canSpawn(EntityType<SnowPigEntity> entityType, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, Random random) {
-        return world.getRawBrightness(pos, 0) > 8;
-    }
-
     /*public boolean removeWhenFarAway(double p_213397_1_) {
         return false;
     }*/
