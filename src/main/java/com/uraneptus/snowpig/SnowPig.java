@@ -21,8 +21,6 @@ import org.apache.logging.log4j.Logger;
 @Mod.EventBusSubscriber(modid = SnowPig.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SnowPig
 {
-
-    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "snowpig";
 
     public SnowPig() {
