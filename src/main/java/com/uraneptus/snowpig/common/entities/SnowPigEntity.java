@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,13 +20,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -46,7 +43,8 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.vehicle.DismountHelper;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
     private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(SnowPigEntity.class, EntityDataSerializers.BOOLEAN);

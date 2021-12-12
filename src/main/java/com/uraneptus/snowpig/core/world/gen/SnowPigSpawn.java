@@ -6,7 +6,7 @@ import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import net.minecraftforge.common.world.MobSpawnInfoBuilder;
+import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,7 +20,7 @@ public class SnowPigSpawn {
     public static void onBiomeLoad(final BiomeLoadingEvent event) {
         if(event.getName() == null)
             return;
-        MobSpawnInfoBuilder spawns = event.getSpawns();
+        MobSpawnSettingsBuilder spawns = event.getSpawns();
 
         if(event.getCategory().equals(Biome.BiomeCategory.ICY)) {
             spawns.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypeRegistry.SNOW_PIG.get(), 20, 1, 4));
