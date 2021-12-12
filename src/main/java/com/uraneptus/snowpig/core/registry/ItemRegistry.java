@@ -2,7 +2,6 @@ package com.uraneptus.snowpig.core.registry;
 
 import com.uraneptus.snowpig.SnowPig;
 import com.uraneptus.snowpig.common.items.FrozenHam;
-import com.uraneptus.snowpig.common.items.SnowPigEgg;
 import com.uraneptus.snowpig.core.ModIntegrations;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;

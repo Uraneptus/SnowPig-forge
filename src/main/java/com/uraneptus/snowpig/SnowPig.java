@@ -2,7 +2,6 @@ package com.uraneptus.snowpig;
 
 import com.uraneptus.snowpig.client.entity.render.SnowPigRender;
 import com.uraneptus.snowpig.common.entities.SnowPigEntity;
-import com.uraneptus.snowpig.common.items.SnowPigEgg;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
 import com.uraneptus.snowpig.core.registry.SoundRegistry;
@@ -43,11 +42,6 @@ public class SnowPig
 
         SnowPigSpawnPlacement.registerMod(event_bus);
         SnowPigSpawn.registerForge(MinecraftForge.EVENT_BUS);
-    }
-
-    @SubscribeEvent
-    public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        SnowPigEgg.regSpawnEggs();
     }
 
     private void setup(final FMLCommonSetupEvent event)
