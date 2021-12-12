@@ -7,6 +7,7 @@ import com.uraneptus.snowpig.core.ModIntegrations;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -23,8 +24,8 @@ public class ItemRegistry {
                 .food(new Food.Builder().nutrition(5).saturationMod(0.3f).meat()
                     .effect(() -> new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 2), 1.0f).build())));
 
-    public static final RegistryObject<SnowPigEgg> SNOW_PIG_EGG = ITEMS.register("snow_pig_spawn_egg",
-            () -> new SnowPigEgg(EntityTypeRegistry.SNOW_PIG, 0x70CFF3, 0xE2FBFA, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+    public static final RegistryObject<Item> SNOW_PIG_EGG = ITEMS.register("snow_pig_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypeRegistry.SNOW_PIG, 0x70CFF3, 0xE2FBFA, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
     public static final RegistryObject<Item> FROZEN_HAM = ITEMS.register("frozen_ham", () -> new FrozenHam(2,-1.2F, (new Item.Properties()
             .tab(ModList.get().isLoaded("farmersdelight") ? ModIntegrations.getFdItemGroup() : ItemGroup.TAB_FOOD)
