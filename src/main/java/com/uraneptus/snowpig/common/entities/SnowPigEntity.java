@@ -82,6 +82,7 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
 
     public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
 
+
     public ResourceLocation getDefaultLootTable() {
         if(ModList.get().isLoaded("farmersdelight")) {
             return FROZEN_HAM_LOOT;
