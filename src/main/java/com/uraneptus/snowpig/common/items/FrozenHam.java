@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 
 import net.minecraft.world.item.Item.Properties;
+import org.jetbrains.annotations.NotNull;
 
 public class FrozenHam extends Item {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -21,6 +22,7 @@ public class FrozenHam extends Item {
         this.defaultModifiers = builder.build();
     }
 
+    @NotNull
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slotType) {
         return slotType == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slotType);
     }

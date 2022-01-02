@@ -1,14 +1,16 @@
 
 modLoader="javafml" #mandatory
 loaderVersion="[39,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+issueTrackerURL="https://github.com/Uraneptus/SnowPig-forge/issues"
 license="GNU General Public License v3.0"
 
 [[mods]] #mandatory
 modId="snowpig" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Snow Pig" #mandatory
-displayURL="https://www.curseforge.com/members/uraneptus/projects" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/snow-pig" #optional
 logoFile="snowpig-banner.png" #optional
+logoBlur=false
 credits="Sounds by Luz#8017" #optional
 authors="Uraneptus" #optional
 description='''

@@ -130,11 +130,11 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         this.steering.readAdditionalSaveData(p_29478_);
     }
 
-    @Override
+    /*@Override
     protected float getSoundVolume ()
     {
         return 0.3F;
-    }
+    }*/
 
     @Override
     protected SoundEvent getAmbientSound() {
@@ -153,7 +153,7 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundRegistry.SNOW_PIG_STEP.get(), 0.10F, 1.0F);
+        this.playSound(SoundRegistry.SNOW_PIG_STEP.get(), 0.15F, 1.0F);
     }
 
     public InteractionResult mobInteract(Player p_29489_, InteractionHand p_29490_) {
