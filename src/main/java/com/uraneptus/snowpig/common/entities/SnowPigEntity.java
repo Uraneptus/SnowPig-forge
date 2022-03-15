@@ -51,9 +51,10 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
     private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(SnowPigEntity.class, EntityDataSerializers.INT);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CARROT, Items.POTATO, Items.BEETROOT);
     private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
+    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
 
-    public SnowPigEntity(EntityType<? extends SnowPigEntity> p_29462_, Level p_29463_) {
-        super(p_29462_, p_29463_);
+    public SnowPigEntity(EntityType<? extends SnowPigEntity> entityType, Level level) {
+        super(entityType, level);
     }
 
     protected void registerGoals() {
@@ -79,9 +80,6 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
     /*public boolean removeWhenFarAway(double p_213397_1_) {
         return false;
     }*/
-
-    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
-
 
     public ResourceLocation getDefaultLootTable() {
         if(ModList.get().isLoaded("farmersdelight")) {
