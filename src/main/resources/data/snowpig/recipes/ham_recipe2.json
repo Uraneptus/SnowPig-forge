@@ -3,9 +3,9 @@
     "ingredient": {
         "item": "snowpig:frozen_ham"
     },
-    "result": "farmersdelight:ham",
+    "result": "farmersdelight:smoked_ham",
     "experience": 0.2,
-    "cookingtime": 100,
+    "cookingtime": 150,
     "group": "ham_recipe",
     "conditions":
     [

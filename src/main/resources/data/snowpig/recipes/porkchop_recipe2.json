@@ -3,8 +3,8 @@
     "ingredient": {
         "item": "snowpig:frozen_porkchop"
     },
-    "result": "minecraft:porkchop",
+    "result": "minecraft:cooked_porkchop",
     "experience": 0.2,
-    "cookingtime": 100,
+    "cookingtime": 150,
     "group": "porkchop_recipe"
 }
