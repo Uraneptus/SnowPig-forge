@@ -79,9 +79,10 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    //implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
-    //runtimeOnly fg.deobf("curse.maven:configured-457570:3559398")
-    //runtimeOnly fg.deobf("curse.maven:catalogue-459701:3559402")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
+    runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:3721946")
+    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3721991")
 
 }
 
