@@ -4,6 +4,7 @@ import com.uraneptus.snowpig.client.entity.render.SnowPigRender;
 import com.uraneptus.snowpig.common.entities.SnowPigEntity;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
+import com.uraneptus.snowpig.core.registry.LootPoolEntryTypeRegistry;
 import com.uraneptus.snowpig.core.registry.SoundRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -29,6 +30,7 @@ public class SnowPig
         SoundRegistry.SOUNDS.register(event_bus);
         ItemRegistry.ITEMS.register(event_bus);
         EntityTypeRegistry.ENTITY_TYPES.register(event_bus);
+        LootPoolEntryTypeRegistry.LOOT_ENTRY.register(event_bus);
 
         MinecraftForge.EVENT_BUS.register(this);
 

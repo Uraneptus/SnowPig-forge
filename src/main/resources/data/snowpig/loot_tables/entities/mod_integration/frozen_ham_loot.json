@@ -5,7 +5,7 @@
       "rolls": 2,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "snowpig:item",
           "name": "snowpig:frozen_porkchop",
           "functions": [
             {
@@ -39,7 +39,7 @@
           ]
         },
         {
-          "type": "minecraft:item",
+          "type": "snowpig:item",
           "name": "snowpig:frozen_ham",
           "functions": [
             {
@@ -83,7 +83,7 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "snowpig:item",
           "name": "snowpig:music_disc_frosty_snig"
         }
       ],
