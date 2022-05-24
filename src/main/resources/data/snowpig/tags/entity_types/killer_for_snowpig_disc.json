@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:stray"
+    "minecraft:stray",
+    "tinyskeletons:baby_stray"
   ]
 }
