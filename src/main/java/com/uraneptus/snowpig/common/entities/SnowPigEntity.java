@@ -81,12 +81,22 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         return false;
     }*/
 
+    /*@Override
+    public void dropFromLootTable(DamageSource pDamageSource, boolean pAttackedRecently) {
+       super.getDefaultLootTable();
+       if (ModList.get().isLoaded("farmersdelight")) {
+           this.level.getServer().getLootTables().get(FROZEN_HAM_LOOT);
+       }
+
+    }*/
+
+    @NotNull
     public ResourceLocation getDefaultLootTable() {
-        if(ModList.get().isLoaded("farmersdelight")) {
+        if (ModList.get().isLoaded("farmersdelight")) {
             return FROZEN_HAM_LOOT;
-        } else {
-            return this.getType().getDefaultLootTable();
         }
+
+        return super.getDefaultLootTable();
     }
 
     @Nullable

@@ -5,7 +5,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true) { exclude group: 'org.apache.log4j' }
+        classpath 'org.apache.logging.log4j:log4j-api:2.11.2'
+        classpath 'org.apache.logging.log4j:log4j-core:2.11.2'
         classpath 'org.parchmentmc:librarian:1.+'
     }
 }
@@ -24,7 +26,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: 'parchment', version: "${parchment_version}-${mc_version}"
-
 
     runs {
         client {
@@ -83,6 +84,8 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
     runtimeOnly fg.deobf("curse.maven:configured-457570:3721946")
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3721991")
+    //runtimeOnly fg.deobf("curse.maven:tiny-skeletons-forge-548647:3727735")
+    //runtimeOnly fg.deobf("curse.maven:puzzles-lib-495476:3681966")
 
 }
 

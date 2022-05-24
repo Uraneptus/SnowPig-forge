@@ -92,7 +92,7 @@
           "condition": "minecraft:entity_properties",
           "entity": "killer",
           "predicate": {
-            "type": "minecraft:stray"
+            "type": "#snowpig:killer_for_snowpig_disc"
           }
         }
       ]
