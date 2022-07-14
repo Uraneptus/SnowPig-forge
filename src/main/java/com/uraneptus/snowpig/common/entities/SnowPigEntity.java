@@ -252,6 +252,10 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         return this.steering.boost(this.getRandom());
     }
 
+    public boolean canFreeze() {
+        return false;
+    }
+
     public SnowPigEntity getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
         return EntityTypeRegistry.SNOW_PIG.get().create(p_149001_);
     }
