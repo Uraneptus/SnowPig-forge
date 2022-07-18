@@ -5,9 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true) { exclude group: 'org.apache.log4j' }
-        classpath 'org.apache.logging.log4j:log4j-api:2.11.2'
-        classpath 'org.apache.logging.log4j:log4j-core:2.11.2'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
     }
 }
@@ -18,7 +16,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${mc_version}-${mod_version}"
-group = 'com.uraneptus.snowpig'
+group = "com.uraneptus.${mod_id}"
 archivesBaseName = 'Snow_Pig'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -81,6 +79,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
+
+    runtimeOnly fg.deobf("curse.maven:abnormals-delight-442719:3881533")
+    runtimeOnly fg.deobf("curse.maven:blueprint-382216:3840203")
     runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
     runtimeOnly fg.deobf("curse.maven:configured-457570:3721946")
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:3721991")
@@ -92,7 +93,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "snowpig",
+            "Specification-Title": "${mod_id}",
             "Specification-Vendor": "uraneptus",
             "Specification-Version": "1",
             "Implementation-Title": project.name,
