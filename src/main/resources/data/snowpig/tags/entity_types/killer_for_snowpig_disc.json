@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "minecraft:stray",
-    "tinyskeletons:baby_stray"
+    {
+      "id": "tinyskeletons:baby_stray",
+      "required": false
+    }
   ]
 }
