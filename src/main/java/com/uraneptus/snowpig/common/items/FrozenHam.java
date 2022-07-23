@@ -2,13 +2,11 @@ package com.uraneptus.snowpig.common.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
-
-import net.minecraft.world.item.Item.Properties;
 import org.jetbrains.annotations.NotNull;
 
 public class FrozenHam extends Item {

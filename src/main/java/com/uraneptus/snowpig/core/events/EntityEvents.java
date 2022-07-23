@@ -1,7 +1,7 @@
 package com.uraneptus.snowpig.core.events;
 
 import com.uraneptus.snowpig.SnowPig;
-import com.uraneptus.snowpig.common.entities.SnowPigEntity;
+import com.uraneptus.snowpig.common.capabilities.SPEntityCap;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Pig;
@@ -12,16 +12,23 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = SnowPig.MOD_ID)
 public class EntityEvents {
 
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void onEntityTick(LivingEvent.LivingUpdateEvent event) {
         Entity entity = event.getEntity();
 
-        if (entity instanceof Pig) {
-            if (entity.isInPowderSnow) { //TODO: Add timer, using capabilities probably
-                ((Pig) entity).convertTo(EntityTypeRegistry.SNOW_PIG.get(), true);
+        if (entity instanceof Pig pig) {
+            if (pig.isInPowderSnow) {
+                if (pig.isFullyFrozen()) {
+                    SPEntityCap.getCapOptional(pig).ifPresent(cap -> {
+                        if (cap.freezeTicks > 0) {
+                            cap.freezeTicks--;
+                        }
+                        if (cap.freezeTicks == 0) {
+                            pig.convertTo(EntityTypeRegistry.SNOW_PIG.get(), true);
+                        }
+                    });
+                }
             }
         }
-
-    }*/
-    
+    }
 }

@@ -1,6 +1,7 @@
 package com.uraneptus.snowpig;
 
 import com.uraneptus.snowpig.client.entity.render.SnowPigRender;
+import com.uraneptus.snowpig.common.capabilities.SPEntityCap;
 import com.uraneptus.snowpig.common.entities.SnowPigEntity;
 import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
 import com.uraneptus.snowpig.core.registry.ItemRegistry;
@@ -9,6 +10,7 @@ import com.uraneptus.snowpig.core.registry.SoundRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,6 +37,9 @@ public class SnowPig
         MinecraftForge.EVENT_BUS.register(this);
 
     }
+    public void setupClient(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityTypeRegistry.SNOW_PIG.get(), SnowPigRender::new);
+    }
 
     @SubscribeEvent
     public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
@@ -46,8 +51,8 @@ public class SnowPig
         event.put(EntityTypeRegistry.SNOW_PIG.get(), SnowPigEntity.createAttributes().build());
     }
 
-    public void setupClient(final EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(EntityTypeRegistry.SNOW_PIG.get(), SnowPigRender::new);
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(SPEntityCap.class);
     }
-
 }
