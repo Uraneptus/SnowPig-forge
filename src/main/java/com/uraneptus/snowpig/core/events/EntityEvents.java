@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 public class EntityEvents {
 
     @SubscribeEvent
-    public static void onEntityTick(LivingEvent.LivingUpdateEvent event) {
+    public static void onEntityTick(LivingEvent.LivingTickEvent event) {
         Entity entity = event.getEntity();
 
         if (entity instanceof Pig pig) {

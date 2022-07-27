@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-//apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/ForgeUpdatesRemapper/main/remapper.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
@@ -26,7 +26,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'parchment', version: "${parchment_version}-${mc_version}"
+    mappings channel: 'parchment', version: "${parchment_version}"
 
     runs {
         client {
@@ -82,13 +82,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
+    //implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
 
-    runtimeOnly fg.deobf("curse.maven:abnormals-delight-442719:3881533")
+    /*runtimeOnly fg.deobf("curse.maven:abnormals-delight-442719:3881533")
     runtimeOnly fg.deobf("curse.maven:blueprint-382216:3840203")
     runtimeOnly fg.deobf("curse.maven:jei-238222:3723913")
-    runtimeOnly fg.deobf("curse.maven:configured-457570:3721946")
-    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3721991")
+    runtimeOnly fg.deobf("curse.maven:configured-457570:3872190")
+    runtimeOnly fg.deobf("curse.maven:catalogue-459701:3873264")*/
     //runtimeOnly fg.deobf("curse.maven:tiny-skeletons-forge-548647:3727735")
     //runtimeOnly fg.deobf("curse.maven:puzzles-lib-495476:3681966")
 

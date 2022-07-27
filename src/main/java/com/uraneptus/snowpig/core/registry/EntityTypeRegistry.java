@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class EntityTypeRegistry {
 
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, SnowPig.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, SnowPig.MOD_ID);
 
     public static final RegistryObject<EntityType<SnowPigEntity>> SNOW_PIG = ENTITY_TYPES.register("snow_pig",
             () -> EntityType.Builder.of(SnowPigEntity::new, MobCategory.CREATURE)
