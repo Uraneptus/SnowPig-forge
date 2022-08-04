@@ -82,7 +82,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    //implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:${fd_version}")
 
     /*runtimeOnly fg.deobf("curse.maven:abnormals-delight-442719:3881533")
     runtimeOnly fg.deobf("curse.maven:blueprint-382216:3840203")
