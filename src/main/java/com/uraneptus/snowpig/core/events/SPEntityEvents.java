@@ -2,7 +2,7 @@ package com.uraneptus.snowpig.core.events;
 
 import com.uraneptus.snowpig.SnowPig;
 import com.uraneptus.snowpig.common.capabilities.SPEntityCap;
-import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
+import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SnowPig.MOD_ID)
-public class EntityEvents {
+public class SPEntityEvents {
 
     @SubscribeEvent
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {
@@ -24,7 +24,7 @@ public class EntityEvents {
                             cap.freezeTicks--;
                         }
                         if (cap.freezeTicks == 0) {
-                            pig.convertTo(EntityTypeRegistry.SNOW_PIG.get(), true);
+                            pig.convertTo(SPEntityTypes.SNOW_PIG.get(), true);
                         }
                     });
                 }

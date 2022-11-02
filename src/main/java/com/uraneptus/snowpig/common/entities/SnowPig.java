@@ -1,8 +1,7 @@
 package com.uraneptus.snowpig.common.entities;
 
-import com.uraneptus.snowpig.SnowPig;
-import com.uraneptus.snowpig.core.registry.EntityTypeRegistry;
-import com.uraneptus.snowpig.core.registry.SoundRegistry;
+import com.uraneptus.snowpig.core.registry.SPEntityTypes;
+import com.uraneptus.snowpig.core.registry.SPSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -38,14 +37,14 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
-    private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(SnowPigEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(SnowPigEntity.class, EntityDataSerializers.INT);
+public class SnowPig extends Animal implements ItemSteerable, Saddleable {
+    private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.INT);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CARROT, Items.POTATO, Items.BEETROOT);
     private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
-    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
+    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(com.uraneptus.snowpig.SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
 
-    public SnowPigEntity(EntityType<? extends SnowPigEntity> entityType, Level level) {
+    public SnowPig(EntityType<? extends SnowPig> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -98,10 +97,9 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
 
     public boolean canBeControlledByRider() {
         Entity entity = this.getControllingPassenger();
-        if (!(entity instanceof Player)) {
+        if (!(entity instanceof Player player)) {
             return false;
         } else {
-            Player player = (Player)entity;
             return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
         }
     }
@@ -120,14 +118,14 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         this.entityData.define(DATA_BOOST_TIME, 0);
     }
 
-    public void addAdditionalSaveData(CompoundTag p_29495_) {
-        super.addAdditionalSaveData(p_29495_);
-        this.steering.addAdditionalSaveData(p_29495_);
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        this.steering.addAdditionalSaveData(nbt);
     }
 
-    public void readAdditionalSaveData(CompoundTag p_29478_) {
-        super.readAdditionalSaveData(p_29478_);
-        this.steering.readAdditionalSaveData(p_29478_);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.steering.readAdditionalSaveData(nbt);
     }
 
     /*@Override
@@ -138,37 +136,38 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.SNOW_PIG_AMBIENT.get();
+        return SPSounds.SNOW_PIG_AMBIENT.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundRegistry.SNOW_PIG_HURT.get();
+        return SPSounds.SNOW_PIG_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound () {
-        return SoundRegistry.SNOW_PIG_DEATH.get();
+        return SPSounds.SNOW_PIG_DEATH.get();
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundRegistry.SNOW_PIG_STEP.get(), 0.15F, 1.0F);
+        this.playSound(SPSounds.SNOW_PIG_STEP.get(), 0.15F, 1.0F);
     }
 
-    public InteractionResult mobInteract(Player p_29489_, InteractionHand p_29490_) {
-        boolean flag = this.isFood(p_29489_.getItemInHand(p_29490_));
-        if (!flag && this.isSaddled() && !this.isVehicle() && !p_29489_.isSecondaryUseActive()) {
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        boolean flag = this.isFood(player.getItemInHand(hand));
+        if (!flag && this.isSaddled() && !this.isVehicle() && !player.isSecondaryUseActive()) {
             if (!this.level.isClientSide) {
-                p_29489_.startRiding(this);
+                player.startRiding(this);
             }
 
             return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else {
-            InteractionResult interactionresult = super.mobInteract(p_29489_, p_29490_);
+            InteractionResult interactionresult = super.mobInteract(player, hand);
             if (!interactionresult.consumesAction()) {
-                ItemStack itemstack = p_29489_.getItemInHand(p_29490_);
-                return itemstack.is(Items.SADDLE) ? itemstack.interactLivingEntity(p_29489_, this, p_29490_) : InteractionResult.PASS;
+                ItemStack itemstack = player.getItemInHand(hand);
+                return itemstack.is(Items.SADDLE) ? itemstack.interactLivingEntity(player, this, hand) : InteractionResult.PASS;
             } else {
                 return interactionresult;
             }
@@ -191,53 +190,54 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         return this.steering.hasSaddle();
     }
 
-    public void equipSaddle(@Nullable SoundSource p_29476_) {
+    public void equipSaddle(@Nullable SoundSource soundSource) {
         this.steering.setSaddle(true);
-        if (p_29476_ != null) {
-            this.level.playSound((Player)null, this, SoundEvents.PIG_SADDLE, p_29476_, 0.5F, 1.0F);
+        if (soundSource != null) {
+            this.level.playSound(null, this, SoundEvents.PIG_SADDLE, soundSource, 0.5F, 1.0F);
         }
 
     }
 
-    public Vec3 getDismountLocationForPassenger(LivingEntity p_29487_) {
+    @Override
+    public Vec3 getDismountLocationForPassenger(LivingEntity entity) {
         Direction direction = this.getMotionDirection();
         if (direction.getAxis() == Direction.Axis.Y) {
-            return super.getDismountLocationForPassenger(p_29487_);
+            return super.getDismountLocationForPassenger(entity);
         } else {
             int[][] aint = DismountHelper.offsetsForDirection(direction);
             BlockPos blockpos = this.blockPosition();
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for(Pose pose : p_29487_.getDismountPoses()) {
-                AABB aabb = p_29487_.getLocalBoundsForPose(pose);
+            for(Pose pose : entity.getDismountPoses()) {
+                AABB aabb = entity.getLocalBoundsForPose(pose);
 
                 for(int[] aint1 : aint) {
                     blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
                     double d0 = this.level.getBlockFloorHeight(blockpos$mutableblockpos);
                     if (DismountHelper.isBlockFloorValid(d0)) {
                         Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
-                        if (DismountHelper.canDismountTo(this.level, p_29487_, aabb.move(vec3))) {
-                            p_29487_.setPose(pose);
+                        if (DismountHelper.canDismountTo(this.level, entity, aabb.move(vec3))) {
+                            entity.setPose(pose);
                             return vec3;
                         }
                     }
                 }
             }
 
-            return super.getDismountLocationForPassenger(p_29487_);
+            return super.getDismountLocationForPassenger(entity);
         }
     }
 
-    public void travel(Vec3 p_29506_) {
-        this.travel(this, this.steering, p_29506_);
+    public void travel(Vec3 vec3) {
+        this.travel(this, this.steering, vec3);
     }
 
     public float getSteeringSpeed() {
         return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.225F;
     }
 
-    public void travelWithInput(Vec3 p_29482_) {
-        super.travel(p_29482_);
+    public void travelWithInput(Vec3 vec3) {
+        super.travel(vec3);
     }
 
     public boolean boost() {
@@ -248,16 +248,17 @@ public class SnowPigEntity extends Animal implements ItemSteerable, Saddleable {
         return false;
     }
 
-    public SnowPigEntity getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
-        return EntityTypeRegistry.SNOW_PIG.get().create(p_149001_);
+    public SnowPig getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
+        return SPEntityTypes.SNOW_PIG.get().create(level);
     }
 
-    public boolean isFood(ItemStack p_29508_) {
-        return FOOD_ITEMS.test(p_29508_);
+    public boolean isFood(ItemStack pStack) {
+        return FOOD_ITEMS.test(pStack);
     }
 
+    @Override
     public Vec3 getLeashOffset() {
-        return new Vec3(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.4F));
+        return new Vec3(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
     }
 
     @Override

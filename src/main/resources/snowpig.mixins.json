@@ -5,10 +5,10 @@
   "minVersion": "0.8",
   "refmap": "snowpig.refmap.json",
   "mixins": [
-    "LivingEntityMixin"
+    "SPLivingEntityMixin"
   ],
   "client": [
-    "LivingEntityRendererMixin"
+    "SPLivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

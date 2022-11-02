@@ -3,7 +3,7 @@ package com.uraneptus.snowpig.common.items;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import com.uraneptus.snowpig.core.registry.LootPoolEntryTypeRegistry;
+import com.uraneptus.snowpig.core.registry.SPLootPoolEntryTypes;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -29,7 +29,7 @@ public class SnowPigLootItem extends LootPoolSingletonContainer {
 
     @Override
     public LootPoolEntryType getType() {
-        return LootPoolEntryTypeRegistry.SNOWPIG_ITEM.get();
+        return SPLootPoolEntryTypes.SNOWPIG_ITEM.get();
     }
 
 
