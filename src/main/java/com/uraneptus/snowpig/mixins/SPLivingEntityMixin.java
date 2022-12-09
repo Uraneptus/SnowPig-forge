@@ -22,4 +22,5 @@ public abstract class SPLivingEntityMixin extends Entity {
             ci.cancel();
         }
     }
+
 }

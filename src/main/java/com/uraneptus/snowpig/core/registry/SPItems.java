@@ -1,6 +1,6 @@
 package com.uraneptus.snowpig.core.registry;
 
-import com.uraneptus.snowpig.SnowPig;
+import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.items.FrozenHam;
 import com.uraneptus.snowpig.core.ModIntegrations;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,10 +17,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = SnowPig.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = SnowPigMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SPItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SnowPig.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SnowPigMod.MOD_ID);
 
     public static final RegistryObject<Item> FROZEN_PORKCHOP = ITEMS.register("frozen_porkchop",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD)

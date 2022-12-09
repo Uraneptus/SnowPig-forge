@@ -1,6 +1,6 @@
 package com.uraneptus.snowpig.common.capabilities;
 
-import com.uraneptus.snowpig.SnowPig;
+import com.uraneptus.snowpig.SnowPigMod;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class SPEntityCapProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
     //The Capability Name MUST be snake case
-    public static final ResourceLocation LOCATION = new ResourceLocation(SnowPig.MOD_ID, "snowpig_cap");
+    public static final ResourceLocation LOCATION = SnowPigMod.modPrefix("snowpig_cap");
     private final SPEntityCap backend = new SPEntityCap();
     private final LazyOptional<SPEntityCap> optional = LazyOptional.of(() -> backend);
 

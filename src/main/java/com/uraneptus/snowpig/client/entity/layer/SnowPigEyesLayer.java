@@ -2,6 +2,7 @@ package com.uraneptus.snowpig.client.entity.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.entities.SnowPig;
 import net.minecraft.client.model.PigModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -12,7 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class SnowPigEyesLayer extends RenderLayer<SnowPig, PigModel<SnowPig>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(com.uraneptus.snowpig.SnowPig.MOD_ID, "textures/entity/glow_eyes.png");
+    private static final ResourceLocation TEXTURE = SnowPigMod.modPrefix("textures/entity/glow_eyes.png");
 
     public SnowPigEyesLayer(RenderLayerParent<SnowPig, PigModel<SnowPig>> entityRendererIn) {
         super(entityRendererIn);

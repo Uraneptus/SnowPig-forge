@@ -1,7 +1,9 @@
 package com.uraneptus.snowpig.common.entities;
 
+import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import com.uraneptus.snowpig.core.registry.SPSounds;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -36,13 +38,16 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.INT);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CARROT, Items.POTATO, Items.BEETROOT);
     private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
-    public static final ResourceLocation FROZEN_HAM_LOOT = new ResourceLocation(com.uraneptus.snowpig.SnowPig.MOD_ID, "entities/mod_integration/frozen_ham_loot");
+    public static final ResourceLocation FROZEN_HAM_LOOT = SnowPigMod.modPrefix("entities/mod_integration/frozen_ham_loot");
 
     public SnowPig(EntityType<? extends SnowPig> entityType, Level level) {
         super(entityType, level);
@@ -68,10 +73,6 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
                 .add(Attributes.ARMOR, 0.5D);
     }
 
-    /*public boolean removeWhenFarAway(double p_213397_1_) {
-        return false;
-    }*/
-
     /*@Override
     public void dropFromLootTable(DamageSource pDamageSource, boolean pAttackedRecently) {
        super.getDefaultLootTable();
@@ -92,24 +93,24 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
 
     @Nullable
     public Entity getControllingPassenger() {
-        return this.getFirstPassenger();
+        Entity entity = this.getFirstPassenger();
+        return entity != null && this.canBeControlledBy(entity) ? entity : null;
     }
 
-    public boolean canBeControlledByRider() {
-        Entity entity = this.getControllingPassenger();
-        if (!(entity instanceof Player player)) {
-            return false;
-        } else {
+    private boolean canBeControlledBy(Entity entity) {
+        if (this.isSaddled() && entity instanceof Player player) {
             return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
+        } else {
+            return false;
         }
     }
 
-    public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
-        if (DATA_BOOST_TIME.equals(p_29480_) && this.level.isClientSide) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
+        if (DATA_BOOST_TIME.equals(pKey) && this.level.isClientSide) {
             this.steering.onSynced();
         }
 
-        super.onSyncedDataUpdated(p_29480_);
+        super.onSyncedDataUpdated(pKey);
     }
 
     protected void defineSynchedData() {
@@ -127,12 +128,6 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
         super.readAdditionalSaveData(nbt);
         this.steering.readAdditionalSaveData(nbt);
     }
-
-    /*@Override
-    protected float getSoundVolume ()
-    {
-        return 0.3F;
-    }*/
 
     @Override
     protected SoundEvent getAmbientSound() {
@@ -199,33 +194,31 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     }
 
     @Override
-    public Vec3 getDismountLocationForPassenger(LivingEntity entity) {
+    public Vec3 getDismountLocationForPassenger(LivingEntity pLivingEntity) {
         Direction direction = this.getMotionDirection();
-        if (direction.getAxis() == Direction.Axis.Y) {
-            return super.getDismountLocationForPassenger(entity);
-        } else {
+        if (direction.getAxis() != Direction.Axis.Y) {
             int[][] aint = DismountHelper.offsetsForDirection(direction);
             BlockPos blockpos = this.blockPosition();
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for(Pose pose : entity.getDismountPoses()) {
-                AABB aabb = entity.getLocalBoundsForPose(pose);
+            for (Pose pose : pLivingEntity.getDismountPoses()) {
+                AABB aabb = pLivingEntity.getLocalBoundsForPose(pose);
 
-                for(int[] aint1 : aint) {
+                for (int[] aint1 : aint) {
                     blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
                     double d0 = this.level.getBlockFloorHeight(blockpos$mutableblockpos);
                     if (DismountHelper.isBlockFloorValid(d0)) {
                         Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
-                        if (DismountHelper.canDismountTo(this.level, entity, aabb.move(vec3))) {
-                            entity.setPose(pose);
+                        if (DismountHelper.canDismountTo(this.level, pLivingEntity, aabb.move(vec3))) {
+                            pLivingEntity.setPose(pose);
                             return vec3;
                         }
                     }
                 }
             }
 
-            return super.getDismountLocationForPassenger(entity);
         }
+        return super.getDismountLocationForPassenger(pLivingEntity);
     }
 
     public void travel(Vec3 vec3) {

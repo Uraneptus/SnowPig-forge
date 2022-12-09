@@ -1,6 +1,6 @@
 package com.uraneptus.snowpig.core.events;
 
-import com.uraneptus.snowpig.SnowPig;
+import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.capabilities.SPEntityCap;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import net.minecraft.world.entity.Entity;
@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = SnowPig.MOD_ID)
+@Mod.EventBusSubscriber(modid = SnowPigMod.MOD_ID)
 public class SPEntityEvents {
 
     @SubscribeEvent

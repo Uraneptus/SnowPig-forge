@@ -1,5 +1,6 @@
 package com.uraneptus.snowpig.client.entity.render;
 
+import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.client.entity.layer.SnowPigEyesLayer;
 import com.uraneptus.snowpig.common.entities.SnowPig;
 import net.minecraft.client.model.PigModel;
@@ -11,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class SnowPigRender extends MobRenderer<SnowPig, PigModel<SnowPig>> {
-    protected static final ResourceLocation TEXTURE = new ResourceLocation(com.uraneptus.snowpig.SnowPig.MOD_ID, "textures/entity/snow_pig.png");
+    protected static final ResourceLocation TEXTURE = SnowPigMod.modPrefix("textures/entity/snow_pig.png");
 
      public SnowPigRender (EntityRendererProvider.Context context) {
         super(context, new PigModel<>(context.bakeLayer(ModelLayers.PIG)), 0.5f);
