@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:stray",
+    {
+      "id": "tinyskeletons:baby_stray",
+      "required": false
+    }
+  ]
+}

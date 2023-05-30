@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "porkchop_recipe",
+  "ingredient": {
+    "item": "snowpig:frozen_porkchop"
+  },
+  "result": "minecraft:porkchop"
+}

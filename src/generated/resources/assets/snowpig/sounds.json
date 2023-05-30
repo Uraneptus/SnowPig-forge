@@ -1,0 +1,42 @@
+{
+  "entity.snow_pig.ambient": {
+    "sounds": [
+      "snowpig:entity/entity.snow_pig.ambient0",
+      "snowpig:entity/entity.snow_pig.ambient1",
+      "snowpig:entity/entity.snow_pig.ambient2"
+    ],
+    "subtitle": "subtitles.entity.snow_pig.ambient"
+  },
+  "entity.snow_pig.death": {
+    "sounds": [
+      "snowpig:entity/entity.snow_pig.death"
+    ],
+    "subtitle": "subtitles.entity.snow_pig.death"
+  },
+  "entity.snow_pig.hurt": {
+    "sounds": [
+      "snowpig:entity/entity.snow_pig.ambient0",
+      "snowpig:entity/entity.snow_pig.ambient1",
+      "snowpig:entity/entity.snow_pig.ambient2"
+    ],
+    "subtitle": "subtitles.entity.snow_pig.hurt"
+  },
+  "entity.snow_pig.step": {
+    "sounds": [
+      "snowpig:entity/entity.snow_pig.step0",
+      "snowpig:entity/entity.snow_pig.step1",
+      "snowpig:entity/entity.snow_pig.step2",
+      "snowpig:entity/entity.snow_pig.step3",
+      "snowpig:entity/entity.snow_pig.step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "music_disc.frosty_snig": {
+    "sounds": [
+      {
+        "name": "snowpig:records/frosty_snig",
+        "stream": true
+      }
+    ]
+  }
+}
