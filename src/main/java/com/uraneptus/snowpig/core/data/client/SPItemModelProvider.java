@@ -2,7 +2,7 @@ package com.uraneptus.snowpig.core.data.client;
 
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.core.registry.SPItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -14,8 +14,8 @@ import static com.uraneptus.snowpig.core.data.SPDatagenUtil.*;
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class SPItemModelProvider extends ItemModelProvider {
 
-    public SPItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, SnowPigMod.MOD_ID, existingFileHelper);
+    public SPItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, SnowPigMod.MOD_ID, existingFileHelper);
     }
 
     @Override

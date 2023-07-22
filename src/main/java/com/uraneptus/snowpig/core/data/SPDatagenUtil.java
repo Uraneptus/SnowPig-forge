@@ -1,15 +1,9 @@
 package com.uraneptus.snowpig.core.data;
 
 import com.uraneptus.snowpig.SnowPigMod;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,12 +13,6 @@ public class SPDatagenUtil {
     public static final String GENERATED = "item/generated";
     public static final String HANDHELD = "item/handheld";
     public static final String SPAWN_EGG = "item/template_spawn_egg";
-    public static final RegistryAccess REGISTRY_ACCESS = RegistryAccess.builtinCopy();
-    public static final Registry<Biome> BIOME_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.BIOME_REGISTRY);
-    public static final Registry<PlacedFeature> PLACED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY);
-    public static HolderSet<PlacedFeature> getPlacementHolder(String name) {
-        return HolderSet.direct(SPDatagenUtil.PLACED_FEATURE_REGISTRY.getOrCreateHolderOrThrow(ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, SnowPigMod.modPrefix(name))));
-    }
 
     public static String name(Block block) {
         return ForgeRegistries.BLOCKS.getKey(block).getPath();

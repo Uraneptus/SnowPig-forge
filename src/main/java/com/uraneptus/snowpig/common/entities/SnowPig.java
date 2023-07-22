@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -42,6 +43,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
+//TODO Make this extend Pig
 public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(SnowPig.class, EntityDataSerializers.INT);
@@ -92,21 +94,21 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     }
 
     @Nullable
-    public Entity getControllingPassenger() {
-        Entity entity = this.getFirstPassenger();
-        return entity != null && this.canBeControlledBy(entity) ? entity : null;
-    }
-
-    private boolean canBeControlledBy(Entity entity) {
-        if (this.isSaddled() && entity instanceof Player player) {
-            return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
-        } else {
-            return false;
+    public LivingEntity getControllingPassenger() {
+        if (this.isSaddled()) {
+            Entity entity = this.getFirstPassenger();
+            if (entity instanceof Player) {
+                Player player = (Player)entity;
+                if (player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK)) {
+                    return player;
+                }
+            }
         }
+        return null;
     }
 
     public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
-        if (DATA_BOOST_TIME.equals(pKey) && this.level.isClientSide) {
+        if (DATA_BOOST_TIME.equals(pKey) && this.level().isClientSide) {
             this.steering.onSynced();
         }
 
@@ -153,11 +155,11 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         boolean flag = this.isFood(player.getItemInHand(hand));
         if (!flag && this.isSaddled() && !this.isVehicle() && !player.isSecondaryUseActive()) {
-            if (!this.level.isClientSide) {
+            if (!this.level().isClientSide) {
                 player.startRiding(this);
             }
 
-            return InteractionResult.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             InteractionResult interactionresult = super.mobInteract(player, hand);
             if (!interactionresult.consumesAction()) {
@@ -188,7 +190,7 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     public void equipSaddle(@Nullable SoundSource soundSource) {
         this.steering.setSaddle(true);
         if (soundSource != null) {
-            this.level.playSound(null, this, SoundEvents.PIG_SADDLE, soundSource, 0.5F, 1.0F);
+            this.level().playSound(null, this, SoundEvents.PIG_SADDLE, soundSource, 0.5F, 1.0F);
         }
 
     }
@@ -206,10 +208,10 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
 
                 for (int[] aint1 : aint) {
                     blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
-                    double d0 = this.level.getBlockFloorHeight(blockpos$mutableblockpos);
+                    double d0 = this.level().getBlockFloorHeight(blockpos$mutableblockpos);
                     if (DismountHelper.isBlockFloorValid(d0)) {
                         Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
-                        if (DismountHelper.canDismountTo(this.level, pLivingEntity, aabb.move(vec3))) {
+                        if (DismountHelper.canDismountTo(this.level(), pLivingEntity, aabb.move(vec3))) {
                             pLivingEntity.setPose(pose);
                             return vec3;
                         }
@@ -221,16 +223,19 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
         return super.getDismountLocationForPassenger(pLivingEntity);
     }
 
-    public void travel(Vec3 vec3) {
-        this.travel(this, this.steering, vec3);
+    protected void tickRidden(Player pPlayer, Vec3 pTravelVector) {
+        super.tickRidden(pPlayer, pTravelVector);
+        this.setRot(pPlayer.getYRot(), pPlayer.getXRot() * 0.5F);
+        this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+        this.steering.tickBoost();
     }
 
-    public float getSteeringSpeed() {
-        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.225F;
+    protected Vec3 getRiddenInput(Player pPlayer, Vec3 pTravelVector) {
+        return new Vec3(0.0D, 0.0D, 1.0D);
     }
 
-    public void travelWithInput(Vec3 vec3) {
-        super.travel(vec3);
+    protected float getRiddenSpeed(Player pPlayer) {
+        return (float)(this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.225D * (double)this.steering.boostFactor());
     }
 
     public boolean boost() {
@@ -255,7 +260,7 @@ public class SnowPig extends Animal implements ItemSteerable, Saddleable {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

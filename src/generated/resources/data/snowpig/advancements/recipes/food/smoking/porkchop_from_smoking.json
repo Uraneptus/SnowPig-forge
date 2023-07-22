@@ -30,5 +30,6 @@
     "recipes": [
       "snowpig:smoking/porkchop_from_smoking"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

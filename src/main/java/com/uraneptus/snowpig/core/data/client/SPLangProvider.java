@@ -3,7 +3,7 @@ package com.uraneptus.snowpig.core.data.client;
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import com.uraneptus.snowpig.core.registry.SPItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 
 public class SPLangProvider extends LanguageProvider {
 
-    public SPLangProvider(DataGenerator gen) {
-        super(gen, SnowPigMod.MOD_ID, "en_us");
+    public SPLangProvider(PackOutput output) {
+        super(output, SnowPigMod.MOD_ID, "en_us");
     }
 
     @Override

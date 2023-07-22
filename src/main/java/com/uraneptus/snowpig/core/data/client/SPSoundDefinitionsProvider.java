@@ -2,7 +2,7 @@ package com.uraneptus.snowpig.core.data.client;
 
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.core.registry.SPSounds;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SoundDefinition;
@@ -13,8 +13,8 @@ import java.util.function.Supplier;
 @SuppressWarnings("SameParameterValue")
 public class SPSoundDefinitionsProvider extends SoundDefinitionsProvider {
 
-    public SPSoundDefinitionsProvider(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, SnowPigMod.MOD_ID, helper);
+    public SPSoundDefinitionsProvider(PackOutput output, ExistingFileHelper helper) {
+        super(output, SnowPigMod.MOD_ID, helper);
     }
 
     @Override

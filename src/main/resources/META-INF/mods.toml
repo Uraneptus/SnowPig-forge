@@ -1,6 +1,6 @@
 
 modLoader="javafml" #mandatory
-loaderVersion="[43,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+loaderVersion="[47,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 issueTrackerURL="https://github.com/Uraneptus/SnowPig-forge/issues"
 license="GNU Lesser General Public License v3.0"
 
@@ -13,20 +13,19 @@ logoFile="snowpig-banner.png" #optional
 logoBlur=false
 credits="Sounds by Luz#8017" #optional
 authors="Uraneptus" #optional
-description='''
-'''
+description='''Mod that adds a Pig for snowy biomes.'''
 
 [[dependencies.snowpig]] #optional
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[43,)" #mandatory
+    versionRange="[47,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.snowpig]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,)"
+    versionRange="[1.20.1,1.21)"
     ordering="NONE"
     side="BOTH"
 

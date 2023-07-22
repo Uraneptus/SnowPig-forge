@@ -30,5 +30,6 @@
     "recipes": [
       "snowpig:smelting/porkchop"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
