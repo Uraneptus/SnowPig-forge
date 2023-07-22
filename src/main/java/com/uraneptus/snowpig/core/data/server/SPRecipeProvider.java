@@ -28,7 +28,7 @@ public class SPRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         cookingRecipes(SPItems.FROZEN_PORKCHOP.get(), Items.PORKCHOP, 0.2F, "porkchop_recipe", consumer);
-        modLoadedCookingRecipes(ModIntegrations.FD_MODID, SPItems.FROZEN_HAM.get(), ModIntegrations.HAM, 0.2F, "ham_recipe", consumer);
+        modLoadedCookingRecipes(ModIntegrations.FD_MODID, SPItems.FROZEN_HAM.get(), ModIntegrations.getHam(), 0.2F, "ham_recipe", consumer);
 
     }
 

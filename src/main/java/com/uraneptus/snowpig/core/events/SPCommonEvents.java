@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SnowPigMod.MOD_ID)
-public class SPEntityEvents {
+public class SPCommonEvents {
 
     @SubscribeEvent
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {

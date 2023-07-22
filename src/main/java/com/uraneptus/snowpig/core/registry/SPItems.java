@@ -16,8 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = SnowPigMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SPItems {
-    //TODO Add items to Tabs
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SnowPigMod.MOD_ID);
 
     public static final RegistryObject<Item> FROZEN_PORKCHOP = ITEMS.register("frozen_porkchop",
@@ -30,7 +28,6 @@ public class SPItems {
     public static final RegistryObject<Item> MUSIC_DISC_FROSTY_SNIG = ITEMS.register("music_disc_frosty_snig",
             () -> new RecordItem(12, SPSounds.MUSIC_DISC_FROSTY_SNIG, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 3720));
 
-    //.tab(!ModIntegrations.IS_FD_LOADED ? null : !ModList.get().isLoaded("abnormals_delight") ? ModIntegrations.getFdItemGroup() : CreativeModeTab.TAB_FOOD)
     public static final RegistryObject<Item> FROZEN_HAM = ITEMS.register("frozen_ham", () -> new FrozenHam(2,-1.2F, (new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 2), 1.0F).build()))));
 
 }

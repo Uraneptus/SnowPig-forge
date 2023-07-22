@@ -6,7 +6,7 @@ license="GNU Lesser General Public License v3.0"
 
 [[mods]] #mandatory
 modId="snowpig" #mandatory
-version="${file.jarVersion}" #mandatory
+version="6.0.0" #mandatory
 displayName="Snow Pig" #mandatory
 displayURL="https://www.curseforge.com/minecraft/mc-mods/snow-pig" #optional
 logoFile="snowpig-banner.png" #optional
