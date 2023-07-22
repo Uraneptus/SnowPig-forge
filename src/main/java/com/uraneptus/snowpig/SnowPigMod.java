@@ -3,6 +3,7 @@ package com.uraneptus.snowpig;
 import com.uraneptus.snowpig.client.entity.render.SnowPigRender;
 import com.uraneptus.snowpig.common.capabilities.SPEntityCap;
 import com.uraneptus.snowpig.common.entities.SnowPig;
+import com.uraneptus.snowpig.core.data.client.SPBlockStateProvider;
 import com.uraneptus.snowpig.core.data.client.SPItemModelProvider;
 import com.uraneptus.snowpig.core.data.client.SPLangProvider;
 import com.uraneptus.snowpig.core.data.client.SPSoundDefinitionsProvider;
@@ -13,10 +14,7 @@ import com.uraneptus.snowpig.core.data.server.tags.SPBiomeTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPBlockTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPEntityTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPItemTagsProvider;
-import com.uraneptus.snowpig.core.registry.SPEntityTypes;
-import com.uraneptus.snowpig.core.registry.SPItems;
-import com.uraneptus.snowpig.core.registry.SPLootPoolEntryTypes;
-import com.uraneptus.snowpig.core.registry.SPSounds;
+import com.uraneptus.snowpig.core.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -28,6 +26,7 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(SnowPigMod.MOD_ID)
@@ -44,9 +43,11 @@ public class SnowPigMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setupClient);
         bus.addListener(this::gatherData);
+        bus.addListener(this::setupCommon);
 
         SPSounds.SOUNDS.register(bus);
         SPItems.ITEMS.register(bus);
+        SPBlocks.BLOCKS.register(bus);
         SPEntityTypes.ENTITY_TYPES.register(bus);
         SPLootPoolEntryTypes.LOOT_ENTRY.register(bus);
 
@@ -55,6 +56,10 @@ public class SnowPigMod {
     }
     public void setupClient(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SPEntityTypes.SNOW_PIG.get(), SnowPigRender::new);
+    }
+
+    private void setupCommon(final FMLCommonSetupEvent event) {
+        event.enqueueWork(SPBrewingRecipes::register);
     }
 
     @SubscribeEvent
@@ -74,6 +79,7 @@ public class SnowPigMod {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
+        generator.addProvider(includeClient, new SPBlockStateProvider(generator, fileHelper));
         generator.addProvider(includeClient, new SPItemModelProvider(generator, fileHelper));
         generator.addProvider(includeClient, new SPSoundDefinitionsProvider(generator, fileHelper));
         generator.addProvider(includeClient, new SPLangProvider(generator));

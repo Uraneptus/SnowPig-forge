@@ -1,7 +1,10 @@
 {
+  "block.snowpig.arctic_lily": "Arctic Lily",
+  "block.snowpig.potted_arctic_lily": "Potted Arctic Lily",
   "entity.snowpig.snow_pig": "Snow Pig",
   "item.snowpig.frozen_ham": "Frozen Ham",
   "item.snowpig.frozen_porkchop": "Frozen Porkchop",
+  "item.snowpig.ice_bomb": "Ice Bomb",
   "item.snowpig.music_disc_frosty_snig": "Music Disc",
   "item.snowpig.music_disc_frosty_snig.desc": "Luz - Frosty Snig",
   "item.snowpig.snow_pig_spawn_egg": "Snow Pig Spawn Egg",

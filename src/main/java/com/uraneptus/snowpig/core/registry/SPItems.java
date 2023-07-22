@@ -2,14 +2,12 @@ package com.uraneptus.snowpig.core.registry;
 
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.items.FrozenHam;
+import com.uraneptus.snowpig.common.items.IceBomb;
 import com.uraneptus.snowpig.core.ModIntegrations;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -37,4 +35,9 @@ public class SPItems {
             .tab(!ModIntegrations.IS_FD_LOADED ? null : !ModList.get().isLoaded("abnormals_delight") ? ModIntegrations.getFdItemGroup() : CreativeModeTab.TAB_FOOD)
             .food(new FoodProperties.Builder().nutrition(5).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 2), 1.0F).build()))));
 
+    public static final RegistryObject<Item> ICE_BOMB = ITEMS.register("ice_bomb",
+            () -> new IceBomb(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<Item> ARCTIC_LILY = ITEMS.register("arctic_lily",
+            () -> new BlockItem(SPBlocks.ARCTIC_LILY.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 }

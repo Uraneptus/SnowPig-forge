@@ -19,6 +19,7 @@ public class SPDatagenUtil {
     public static final String GENERATED = "item/generated";
     public static final String HANDHELD = "item/handheld";
     public static final String SPAWN_EGG = "item/template_spawn_egg";
+    public static final String POTTED_CROSS = "block/flower_pot_cross";
     public static final RegistryAccess REGISTRY_ACCESS = RegistryAccess.builtinCopy();
     public static final Registry<Biome> BIOME_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.BIOME_REGISTRY);
     public static final Registry<PlacedFeature> PLACED_FEATURE_REGISTRY = REGISTRY_ACCESS.registryOrThrow(Registry.PLACED_FEATURE_REGISTRY);

@@ -24,6 +24,9 @@ public class SPItemModelProvider extends ItemModelProvider {
         basicHandheldItem(SPItems.FROZEN_HAM);
         basicItem(SPItems.MUSIC_DISC_FROSTY_SNIG);
         basicSpawnEggItem(SPItems.SNOW_PIG_EGG);
+        basicItem(SPItems.ICE_BOMB);
+        blockItemWithGeneratedTexture(SPItems.ARCTIC_LILY);
+
     }
 
     private void basicItem(Supplier<? extends Item> item) {
@@ -36,5 +39,9 @@ public class SPItemModelProvider extends ItemModelProvider {
 
     private void basicSpawnEggItem(Supplier<? extends Item> item) {
         withExistingParent(name(item.get()), SPAWN_EGG);
+    }
+
+    private void blockItemWithGeneratedTexture(Supplier<? extends Item> blockForItem) {
+        withExistingParent(name(blockForItem.get()), GENERATED).texture(LAYER0, modBlockLocation(name(blockForItem.get())));
     }
 }

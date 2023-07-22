@@ -1,6 +1,7 @@
 package com.uraneptus.snowpig.core.data.client;
 
 import com.uraneptus.snowpig.SnowPigMod;
+import com.uraneptus.snowpig.core.registry.SPBlocks;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import com.uraneptus.snowpig.core.registry.SPItems;
 import net.minecraft.data.DataGenerator;
@@ -24,6 +25,10 @@ public class SPLangProvider extends LanguageProvider {
         addItem(SPItems.FROZEN_HAM, "Frozen Ham");
         addItem(SPItems.SNOW_PIG_EGG, "Snow Pig Spawn Egg");
         addMusicDisc(SPItems.MUSIC_DISC_FROSTY_SNIG, "Luz - Frosty Snig");
+        addItem(SPItems.ICE_BOMB, "Ice Bomb");
+
+        addBlock(SPBlocks.ARCTIC_LILY, "Arctic Lily");
+        addBlock(SPBlocks.POTTED_ARCTIC_LILY, "Potted Arctic Lily");
 
         addEntityType(SPEntityTypes.SNOW_PIG, "Snow Pig");
 

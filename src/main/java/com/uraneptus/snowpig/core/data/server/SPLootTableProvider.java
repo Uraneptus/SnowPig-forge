@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.items.SnowPigLootItem;
+import com.uraneptus.snowpig.core.registry.SPBlocks;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import com.uraneptus.snowpig.core.registry.SPItems;
 import com.uraneptus.snowpig.core.tags.SPEntityTags;
@@ -12,10 +13,12 @@ import net.minecraft.advancements.critereon.EntityEquipmentPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.EntityLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -39,7 +42,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SPLootTableProvider extends LootTableProvider {
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(SPEntityLoot::new, LootContextParamSets.ENTITY));
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(SPBlockLoot::new, LootContextParamSets.BLOCK), Pair.of(SPEntityLoot::new, LootContextParamSets.ENTITY));
 
     public SPLootTableProvider(DataGenerator pGenerator) {
         super(pGenerator);
@@ -52,6 +55,19 @@ public class SPLootTableProvider extends LootTableProvider {
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
+    }
+
+    private static class SPBlockLoot extends BlockLoot {
+        @Override
+        protected void addTables() {
+            this.dropSelf(SPBlocks.ARCTIC_LILY.get());
+            this.dropPottedContents(SPBlocks.POTTED_ARCTIC_LILY.get());
+        }
+
+        @Override
+        protected Iterable<Block> getKnownBlocks() {
+            return ForgeRegistries.BLOCKS.getValues().stream().filter(blocks -> ForgeRegistries.BLOCKS.getKey(blocks) != null && SnowPigMod.MOD_ID.equals(ForgeRegistries.BLOCKS.getKey(blocks).getNamespace())).collect(Collectors.toSet());
+        }
     }
 
     private static class SPEntityLoot extends EntityLoot {
