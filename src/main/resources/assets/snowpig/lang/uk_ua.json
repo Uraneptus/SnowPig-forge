@@ -1,0 +1,11 @@
+{
+  "entity.snowpig.snow_pig": "Снігосвин",
+  "item.snowpig.frozen_ham": "Заморожена шинка",
+  "item.snowpig.frozen_porkchop": "Заморожена відбивна",
+  "item.snowpig.music_disc_frosty_snig": "Платівка",
+  "item.snowpig.music_disc_frosty_snig.desc": "Луз — Frosty Snig",
+  "item.snowpig.snow_pig_spawn_egg": "Яйце виклику снігосвина",
+  "subtitles.entity.snow_pig.ambient": "Снігосвин рохкає",
+  "subtitles.entity.snow_pig.death": "Снігосвин гине",
+  "subtitles.entity.snow_pig.hurt": "Снігосвина поранено"
+}
