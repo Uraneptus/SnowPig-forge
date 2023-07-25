@@ -1,0 +1,11 @@
+{
+  "item.snowpig.frozen_porkchop": "Gefrorenes Schweinefleisch",
+  "item.snowpig.frozen_ham": "Gefrorener Schinken",
+  "item.snowpig.snow_pig_spawn_egg": "Schnee Schwein-Spawn-Ei",
+  "entity.snowpig.snow_pig": "Schnee Schwein",
+  "item.snowpig.music_disc_frosty_snig": "Schallplatte",
+  "item.snowpig.music_disc_frosty_snig.desc": "Luz - Frosty Snig",
+  "subtitles.entity.snow_pig.ambient": "Schnee Schwein grunzt",
+  "subtitles.entity.snow_pig.death": "Schnee Schwein stirbt",
+  "subtitles.entity.snow_pig.hurt": "Schnee Schwein nimmt Schaden"
+}
