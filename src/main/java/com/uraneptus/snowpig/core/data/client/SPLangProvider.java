@@ -3,6 +3,7 @@ package com.uraneptus.snowpig.core.data.client;
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.core.registry.SPEntityTypes;
 import com.uraneptus.snowpig.core.registry.SPItems;
+import com.uraneptus.snowpig.core.registry.SPPotions;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -24,6 +25,8 @@ public class SPLangProvider extends LanguageProvider {
         addItem(SPItems.FROZEN_HAM, "Frozen Ham");
         addItem(SPItems.SNOW_PIG_EGG, "Snow Pig Spawn Egg");
         addMusicDisc(SPItems.MUSIC_DISC_FROSTY_SNIG, "Luz - Frosty Snig");
+
+        addPotionsForEffect(SPPotions.FREEZING_POTION, "Freezing");
 
         addEntityType(SPEntityTypes.SNOW_PIG, "Snow Pig");
 

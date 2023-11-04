@@ -13,10 +13,7 @@ import com.uraneptus.snowpig.core.data.server.tags.SPBiomeTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPBlockTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPEntityTagsProvider;
 import com.uraneptus.snowpig.core.data.server.tags.SPItemTagsProvider;
-import com.uraneptus.snowpig.core.registry.SPEntityTypes;
-import com.uraneptus.snowpig.core.registry.SPItems;
-import com.uraneptus.snowpig.core.registry.SPLootPoolEntryTypes;
-import com.uraneptus.snowpig.core.registry.SPSounds;
+import com.uraneptus.snowpig.core.registry.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
@@ -56,6 +53,8 @@ public class SnowPigMod {
 
         SPSounds.SOUNDS.register(bus);
         SPItems.ITEMS.register(bus);
+        SPMobEffects.EFFECTS.register(bus);
+        SPPotions.POTIONS.register(bus);
         SPEntityTypes.ENTITY_TYPES.register(bus);
         SPLootPoolEntryTypes.LOOT_ENTRY.register(bus);
 

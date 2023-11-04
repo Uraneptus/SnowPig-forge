@@ -1,5 +1,9 @@
 {
   "entity.snowpig.snow_pig": "Snow Pig",
+  "item.minecraft.lingering_potion.effect.freezing_potion": "Lingering Potion of Freezing",
+  "item.minecraft.potion.effect.freezing_potion": "Potion of Freezing",
+  "item.minecraft.splash_potion.effect.freezing_potion": "Splash Potion of Freezing",
+  "item.minecraft.tipped_arrow.effect.freezing_potion": "Arrow of Freezing",
   "item.snowpig.frozen_ham": "Frozen Ham",
   "item.snowpig.frozen_porkchop": "Frozen Porkchop",
   "item.snowpig.music_disc_frosty_snig": "Music Disc",
