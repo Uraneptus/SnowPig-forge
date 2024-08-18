@@ -1,0 +1,11 @@
+{
+  "entity.snowpig.snow_pig": "Kar Domuzu",
+  "item.snowpig.frozen_ham": "Donmuş Jambon",
+  "item.snowpig.frozen_porkchop": "Donmuş Domuz Pirzolası",
+  "item.snowpig.music_disc_frosty_snig": "Müzik Diski",
+  "jukebox_song.snowpig.frosty_snig": "Luz - Frosty Snig",
+  "item.snowpig.snow_pig_spawn_egg": "Kar Domuzu Çağırma Yumurtası",
+  "subtitles.entity.snow_pig.ambient": "Kar Domuzu ses çıkarıyor",
+  "subtitles.entity.snow_pig.death": "Kar Domuzu öldü",
+  "subtitles.entity.snow_pig.hurt": "Kar Domuzu hasar aldı"
+}
