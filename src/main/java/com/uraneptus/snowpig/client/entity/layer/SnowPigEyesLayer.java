@@ -1,27 +1,22 @@
 package com.uraneptus.snowpig.client.entity.layer;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.uraneptus.snowpig.SnowPigMod;
 import com.uraneptus.snowpig.common.entities.SnowPig;
 import net.minecraft.client.model.PigModel;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
 
-public class SnowPigEyesLayer extends RenderLayer<SnowPig, PigModel<SnowPig>> {
+public class SnowPigEyesLayer<T extends SnowPig> extends EyesLayer<T, PigModel<T>> {
     private static final ResourceLocation TEXTURE = SnowPigMod.modPrefix("textures/entity/glow_eyes.png");
 
-    public SnowPigEyesLayer(RenderLayerParent<SnowPig, PigModel<SnowPig>> entityRendererIn) {
+    public SnowPigEyesLayer(RenderLayerParent<T, PigModel<T>> entityRendererIn) {
         super(entityRendererIn);
     }
 
     @Override
-    public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, SnowPig entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        VertexConsumer iVertexBuilder = bufferIn.getBuffer(RenderType.eyes(TEXTURE));
-        this.getParentModel().renderToBuffer(matrixStackIn, iVertexBuilder, 16777215, OverlayTexture.NO_OVERLAY);
+    public RenderType renderType() {
+        return RenderType.eyes(TEXTURE);
     }
 }
